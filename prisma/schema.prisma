@@ -1,0 +1,53 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model ContactRequest {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  subject   String
+  message   String
+  createdAt DateTime @default(now())
+}
+
+model DemoRequest {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  company   String
+  size      String
+  plan      String
+  createdAt DateTime @default(now())
+}
+
+model NewsletterSubscriber {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
+
+model ConsultationBooking {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  service   String
+  date      String
+  time      String
+  notes     String?
+  createdAt DateTime @default(now())
+}
+
+model ResourceDownload {
+  id           String   @id @default(uuid())
+  email        String
+  resourceId   String
+  resourceName String
+  createdAt    DateTime @default(now())
+}
